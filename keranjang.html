@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Keranjang Belanja | Sepphira Beads</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .action-btn {
+      padding: 5px 10px;
+      margin: 2px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .edit {
+      background-color: #ffc107;
+      color: #000;
+    }
+
+    .hapus {
+      background-color: #dc3545;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="tentangkami.html">Tentang Kami</a>
+    <a href="produk.html">Produk</a>
+    <a href="portofolio.html">Portofolio</a>
+    <a href="pelanggan.html">Pelanggan</a>
+    <a href="keranjang.html" class="nav-cart" title="Keranjang Belanja">
+      <i class="fas fa-shopping-cart"></i>
+      <span id="cart-count">0</span>
+    </a>
+  </nav>
+
+  <div class="cart-container">
+    <h2>Keranjang Belanja Kamu</h2>
+    <div id="cart-area"></div>
+    <div class="cart-total" id="total-harga"></div>
+    <div class="checkout-box">
+      <button onclick="window.location.href='cekout.html'" class="checkout-btn">Checkout</button>
+    </div>
+    <p class="empty-msg" id="empty-msg" style="display:none;">Keranjang kamu kosong 🏜️</p>
+  </div>
+
+  <script>
+    function formatRupiah(angka) {
+      return 'Rp ' + angka.toLocaleString('id-ID');
+    }
+
+    function updateCartCount() {
+      const count = localStorage.getItem('cartCount') || 0;
+      const badge = document.getElementById('cart-count');
+      if (badge) badge.textContent = count;
+    }
+
+    function loadCart() {
+      const list = JSON.parse(localStorage.getItem('cartList') || '[]');
+      const area = document.getElementById('cart-area');
+      const totalBox = document.getElementById('total-harga');
+      const emptyMsg = document.getElementById('empty-msg');
+
+      if (!list.length) {
+        area.innerHTML = '';
+        totalBox.textContent = '';
+        emptyMsg.style.display = 'block';
+        return;
+      }
+
+      emptyMsg.style.display = 'none';
+
+      let table = `
+        <table>
+          <thead>
+            <tr>
+              <th>Gambar</th>
+              <th>Produk</th>
+              <th>Jumlah</th>
+              <th>Harga</th>
+              <th>Total</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      let grandTotal = 0;
+
+      list.forEach((item, index) => {
+        const jumlah = item.quantity || 1;
+        const total = item.price * jumlah;
+        grandTotal += total;
+
+        table += `
+          <tr>
+            <td><img src="${item.image}" alt="${item.name}" width="50"></td>
+            <td>${item.name}</td>
+            <td>${jumlah}</td>
+            <td>${formatRupiah(item.price)}</td>
+            <td>${formatRupiah(total)}</td>
+            <td>
+              <button class="action-btn edit" onclick="editItem(${index})">Edit</button>
+              <button class="action-btn hapus" onclick="hapusItem(${index})">Hapus</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      table += '</tbody></table>';
+      area.innerHTML = table;
+      totalBox.innerHTML = `<strong>Total Belanja:</strong> ${formatRupiah(grandTotal)}`;
+    }
+
+    function hapusItem(index) {
+      let list = JSON.parse(localStorage.getItem('cartList') || '[]');
+      list.splice(index, 1);
+      localStorage.setItem('cartList', JSON.stringify(list));
+      localStorage.setItem('cartCount', list.length);
+      updateCartCount();
+      loadCart();
+    }
+
+    function editItem(index) {
+      let list = JSON.parse(localStorage.getItem('cartList') || '[]');
+      const current = list[index];
+      const newQty = prompt(`Ubah jumlah untuk "${current.name}":`, current.quantity || 1);
+      const qtyNum = parseInt(newQty);
+      if (!isNaN(qtyNum) && qtyNum > 0) {
+        list[index].quantity = qtyNum;
+        localStorage.setItem('cartList', JSON.stringify(list));
+        loadCart();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartCount();
+      loadCart();
+    });
+  </script>
+</body>
+
+</html>

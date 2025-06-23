@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sepphira Beads</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Custom */
+    :root {
+      --primary: #800038;
+      --secondary: #f4a9c8;
+    }
+
+    /* Custom CSS yang tidak bisa di-handle Tailwind */
+    .gradient-text {
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-link-underline {
+      position: relative;
+    }
+
+    .nav-link-underline::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background-color: var(--primary-dark);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link-underline:hover::after,
+    .nav-link-underline.active::after {
+      width: 60%;
+    }
+
+    /* Feature Accordion Styles - FIXED */
+    .feature-item {
+      cursor: pointer;
+    }
+
+    .feature-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out, padding 0.3s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="fixed top-0 w-full z-50 glass-nav border-b border-secondary/20 transition-all duration-300"id="mainNav">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <a href="index.html" class="flex items-center space-x-2" data-aos="fade-right" data-aos-duration="800">
+            <span class="text-xl font-bold gradient-text">Sepphira</span>
+            <span class="text-xl font-bold text-secondary">beads</span>
+          </a>
+          <!-- Desktop Menu -->
+          <div class="hidden lg:flex items-center space-x-8" data-aos="fade-left" data-aos-duration="800">
+            <a href="index.html" class="nav-link-underline active text-primary-dark font-medium px-3 py-2">Beranda</a>
+            <a href="tentang.html" class="nav-link-underline text-gray-700 dark:text-gray-300 hover:text-primary font-medium px-3 py-2">Tentang Kami</a>
+            <a href="kisah-sukses.html" class="nav-link-underline text-gray-700 dark:text-gray-300 hover:text-primary font-medium px-3 py-2">Kisah Sukses</a>
+            <a href="pelatihan-materi.html" class="nav-link-underline text-gray-700 dark:text-gray-300 hover:text-primary font-medium px-3 py-2">Pelatihan & Materi</a>
+            <a href="hubungi.html" class="nav-link-underline text-gray-700 dark:text-gray-100 hover:text-primary font-medium px-3 py-2">Hubungi Kami</a>
+          </div>
+        </div>
+      </div>
+  </nav>
+
+  <header>
+    <img src="asset/bannerpink.png" alt="Banner Produk Sepphira" class="banner">
+  </header>
+
+  <section class="produk-preview">
+    <h2>Our Product</h2>
+    <div class="produk-container">
+      <div class="produk-item">
+        <img src="asset/p gelang.jpg" alt="Sea Bracelete">
+        <h3>Sea Bracelete</h3>
+        <p class="price">IDR 25.000</p>
+        <div class="button-group">
+          <button class="beli-btn">Beli Sekarang</button>
+          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+        </div>
+      </div>
+      <div class="produk-item">
+        <img src="asset/p kalung.jpg" alt="Random Bracelete">
+        <h3>Random Bracelete</h3>
+        <p class="price">IDR 25.000</p>
+        <div class="button-group">
+          <button class="beli-btn">Beli Sekarang</button>
+          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+        </div>
+      </div>
+      <div class="produk-item">
+        <img src="asset/p kalung2.jpg" alt="Necklace Beads">
+        <h3>Necklace Beads</h3>
+        <p class="price">IDR 25.000</p>
+        <div class="button-group">
+          <button class="beli-btn">Beli Sekarang</button>
+          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+        </div>
+      </div>
+      <div class="produk-item">
+        <img src="asset/kerang.jpeg" alt="Necklace Beads">
+        <h3>Necklace Beads</h3>
+        <p class="price">IDR 25.000</p>
+        <div class="button-group">
+          <button class="beli-btn">Beli Sekarang</button>
+          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+        </div>
+      </div>
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="900">
+        <a href="produk.html" class="inline-flex items-center justify-center px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transform hover:-translate-y-1 transition-all duration-300 shadow-lg pulse-animation">
+          Lihat Produk Lain
+        </a>
+      </div>
+  </section>
+
+  <section class="produk-highlight">
+    <div class="quote">
+      <blockquote>
+        “Life is like a train of moods, like a string of beads... they paint the world their own hue.”
+        <br><span>&mdash; Ralph Waldo Emerson</span>
+      </blockquote>
+    </div>
+    <div class="highlight-container">
+      <img src="asset/tasbih.jpg" alt="Tasbih Batu Alam">
+      <div class="highlight-info">
+        <h3>Tasbih Batu Alam dengan Rumbai Eksklusif</h3>
+        <p class="price">IDR 34.000</p>
+        <p>Tasbih elegan ini dibuat dari rangkaian batu alam asli berbagai warna dan jenis, memberikan kesan alami
+          sekaligus artistik. Setiap butiran batu memiliki keunikan motif dan tekstur, menjadikan setiap tasbih
+          satu-satunya di dunia. Dipadukan dengan aksen manik-manik emas dan mutiara sintetis yang memberikan sentuhan
+          mewah.</p>
+        <button>Beli Sekarang</button>
+        <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="produk-gallery">
+    <div class="produk-gallery-container">
+      <div class="produk-follow">
+        <p>follow us<br><strong>@sepphirabeads</strong></p>
+      </div>
+      <img src="asset/gelang2.jpg" alt="Produk 4">
+      <img src="asset/gelang3.jpg" alt="Produk 5">
+      <img src="asset/gelang4.jpg" alt="Produk 6">
+      <img src="asset/glng.jpg" alt="Produk 8">
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">
+      <img src="asset/seplogo.png" alt="Logo" width="50">
+      <div>
+        <div>Sepphira Beads</div>
+        <div style="font-weight: normal; font-size: 14px;">"Sweet Little Sparkles for Everyday Moments"</div>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <a href="tentangkami.html">Tentang Kami</a>
+      <a href="produk.html">Produk</a>
+      <a href="portofolio.html">Portofolio</a>
+      <a href="pelanggan.html">Pelanggan</a>
+    </div>
+    <div class="footer-contact">
+      <p>Wonogiri</p>
+      <p>Pakembinangun, Kec. Pakem, Kabupaten Sleman</p>
+      <p>Daerah Istimewa Yogyakarta</p>
+      <p>+62 856 4360 3270</p>
+      <div class="footer-social">
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-tiktok"></i>
+        <i class="fab fa-facebook"></i>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartCount();
+
+      const cartButtons = document.querySelectorAll('.produk-item .cart-btn');
+      cartButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          const item = button.closest('.produk-item');
+          const name = item.querySelector('h3').textContent;
+          const image = item.querySelector('img').getAttribute('src');
+          const price = 25000;
+
+          let list = JSON.parse(localStorage.getItem('cartList') || '[]');
+          list.push({ name, image, price, quantity: 1 });
+          localStorage.setItem('cartList', JSON.stringify(list));
+          localStorage.setItem('cartCount', list.length);
+          updateCartCount();
+
+          // Jika tombolnya memang berniat redirect (misal tombol cart di produk)
+          if (button.dataset.redirect === "true") {
+            window.location.href = 'keranjang.html';
+          }
+        });
+      });
+    });
+
+    function updateCartCount() {
+      const count = localStorage.getItem('cartCount') || 0;
+      const badge = document.getElementById('cart-count');
+      if (badge) badge.textContent = count;
+    }
+  </script>
+</body>
+
+</html>

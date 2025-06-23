@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+    }
+
+    .navbar {
+      background-color: #f4a9c8;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .navbar h1 {
+      font-size: 20px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    .checkout-container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-section, .summary-section {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input[type="text"], input[type="email"], textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .summary-box {
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-radius: 6px;
+    }
+
+    .summary-box p {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    .total {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .button-group button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .btn-back {
+      background-color: #ccc;
+      color: #333;
+    }
+
+    .btn-back:hover {
+      background-color: #bbb;
+    }
+
+    .btn-pay {
+      background-color: #f4a9c8;
+      color: white;
+    }
+
+    .btn-pay:hover {
+      background-color: #bbb;
+    }
+
+    @media (max-width: 600px) {
+      .checkout-container {
+        margin: 10px;
+        padding: 15px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar ul {
+        flex-direction: column;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <div class="navbar">
+    <h1>Sepphira Beads</h1>
+    <ul>
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="produk.html">Produk</a></li>
+      <li><a href="keranjang.html">Keranjang</a></li>
+      <li><a href="cekout.html">Checkout</a></li>
+    </ul>
+  </div>
+
+  <!-- ===== CHECKOUT CONTENT ===== -->
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+
+    <div class="form-section">
+      <h3>Informasi Pengiriman</h3>
+      <label for="nama">Nama Lengkap</label>
+      <input type="text" id="nama" placeholder="Contoh: Dinda Rahma">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Contoh: dinda@mail.com">
+
+      <label for="alamat">Alamat Lengkap</label>
+      <textarea id="alamat" rows="3" placeholder="Contoh: Jl. Melati No.5, Bekasi"></textarea>
+
+      <label for="telepon">No. Telepon</label>
+      <input type="text" id="telepon" placeholder="Contoh: 08123456789">
+    </div>
+
+    <div class="summary-section">
+      <h3>Ringkasan Pesanan</h3>
+      <div class="summary-box">
+        <div id="checkout-items"></div>
+        <p>Ongkos Kirim <span style="float:right;" id="ongkir">Rp9.000</span></p>
+        <hr>
+        <p class="total">Total <span style="float:right;" id="checkout-total">Rp0</span></p>
+      </div>
+    </div>
+
+    <div class="button-group">
+        <button class="btn-back" onclick="window.location.href='keranjang.html'">← Kembali ke Keranjang</button>
+        <button class="btn-pay">Bayar Sekarang</button>
+    </div>
+  </div>
+
+  <!-- ===== SCRIPT UNTUK MENGISI CHECKOUT DARI KERANJANG ===== -->
+  <script>
+    function formatRupiah(angka) {
+      return 'Rp ' + angka.toLocaleString('id-ID');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const itemsArea = document.getElementById('checkout-items');
+      const totalSpan = document.getElementById('checkout-total');
+      const ongkir = 9000;
+
+      const list = JSON.parse(localStorage.getItem('cartList') || '[]');
+      let subtotal = 0;
+      let html = '';
+
+      if (!list.length) {
+        itemsArea.innerHTML = '<p>Keranjang kosong 😢</p>';
+        totalSpan.textContent = formatRupiah(0);
+        return;
+      }
+
+      list.forEach(item => {
+        const jumlah = item.quantity || 1;
+        const total = item.price * jumlah;
+        subtotal += total;
+
+        html += `<p>${item.name} x ${jumlah} <span style="float:right;">${formatRupiah(total)}</span></p>`;
+      });
+
+      itemsArea.innerHTML = html;
+      const totalSemua = subtotal + ongkir;
+      totalSpan.textContent = formatRupiah(totalSemua);
+    });
+  </script>
+
+</body>
+</html>
