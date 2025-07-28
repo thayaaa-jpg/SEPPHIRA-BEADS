@@ -3,193 +3,349 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Produk | Sepphira Beads</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #800038;
+      --secondary: #f4a9c8;
+      --light: #fff0f5;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      z-index: 50;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 55px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .nav-buttons a button {
+      padding: 0.5rem 1rem;
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .nav-buttons a button:hover {
+      background-color: #e07ba7;
+      transform: scale(1.05);
+    }
+
+    .active-btn {
+      background-color: #e07ba7 !important;
+    }
+
+    section {
+      padding: 100px 20px 40px;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeSlideUp 1s ease both;
+    }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section h2, section h3, section h4 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    section p {
+      text-align: center;
+      max-width: 800px;
+      margin: 0.5rem auto 1.5rem;
+      line-height: 1.6;
+    }
+
+    .produk-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+
+    .produk-item {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeSlideUp 1s ease both;
+    }
+
+    .produk-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .produk-item img {
+      width: 100%;
+      border-radius: 10px;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .produk-item h3 {
+      color: var(--primary);
+      font-size: 1rem;
+      margin: 0.5rem 0;
+    }
+
+    .price {
+      color: #555;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .button-group button, .button-group a {
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button-group button:hover, .button-group a:hover {
+      background-color: #e07ba7;
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: #fce4ec;
+      padding: 40px 20px;
+      margin-top: 2rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      color: #800038;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-logo img {
+      width: 50px;
+      border-radius: 8px;
+    }
+
+    .footer-nav {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .footer-nav a {
+      display: block;
+      color: #800038;
+      text-decoration: none;
+      margin-bottom: 8px;
+      font-weight: 500;
+      transition: text-decoration 0.3s;
+    }
+
+    .footer-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-contact {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .footer-social i {
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .footer-social i:hover {
+      transform: translateY(-3px);
+    }
+  </style>
 </head>
 
 <body>
   <nav>
-    <a href="index.html">Beranda</a>
-    <a href="tentangkami.html">Tentang Kami</a>
-    <a href="produk.html">Produk</a>
-    <a href="portofolio.html">Portofolio</a>
-    <a href="pelanggan.html">Pelanggan</a>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="gradient-text">Sepphira</span>&nbsp;<span style="color: var(--secondary);">beads</span>
+      </a>
+      <div class="nav-buttons">
+        <a href="index.html"><button>Beranda</button></a>
+        <a href="tentangkami.html"><button>Tentang Kami</button></a>
+        <a href="produk.html"><button class="active-btn">Produk</button></a>
+        <a href="portofolio.html"><button>Portofolio</button></a>
+        <a href="pelanggan.html"><button>Pelanggan</button></a>
+      </div>
+    </div>
   </nav>
 
   <section>
     <h2>Produk Kami</h2>
     <h3>Produk & Layanan</h3>
-    <p>Produk dan layanan yang ditawarkan oleh Sepphira berfokus pada pembuatan aksesoris fashion handmade berbahan
-      dasar manik-manik (beads). Produk utama yang ditawarkan meliputi gelang, cincin, strap handphone, gantungan kunci,
-      bag charm, holder photocard, dan juga tasbih manik. Seluruh produk dirancang secara manual dengan mengutamakan
-      keunikan, estetika, dan kualitas, sehingga setiap item memiliki sentuhan personal yang berbeda dari produk massal.
-      Selain produk utama, Sepphira juga menawarkan layanan tambahan berupa paket hadiah atau gift set dengan kemasan
-      menarik yang cocok untuk kado ulang tahun, wisuda, atau momen spesial lainnya. Dalam hal layanan pelanggan,
-      Sepphira mengutamakan kenyamanan dan kecepatan respon melalui berbagai kanal komunikasi seperti WhatsApp Business,
-      Instagram DM, dan TikTok Inbox.</p>
+    <p>Sepphira berfokus pada aksesoris handmade berbahan beads: gelang, cincin, strap handphone, bag charm, holder photocard, tasbih, dengan layanan kustom desain dan gift set eksklusif untuk hadiah istimewa Anda.</p>
     <h4>Keunggulan & Keuntungan Pelanggan</h4>
-    <p>Salah satu keunggulan kompetitif adalah produk yang dibuat secara handmade dengan perhatian tinggi terhadap
-      detail, sehingga setiap item memiliki nilai eksklusivitas dan kualitas yang lebih terjaga dibandingkan produk
-      massal. Selain itu, layanan kustomisasi memungkinkan pelanggan untuk menentukan desain, warna, dan juga memberikan
-      pengalaman berbelanja yang personal dan bermakna. Melalui kombinasi produk yang kreatif, layanan personal, dan
-      pendekatan visual branding yang kuat di media sosial, SepphiraBeads memberikan pengalaman berbelanja yang
-      menyenangkan serta membangun kedekatan emosional dengan pelanggan, khususnya dari kalangan Gen Z dan milenial yang
-      menyukai produk unik, estetik. Pelanggan juga diuntungkan dengan pelayanan yang cepat dan ramah melalui berbagai
-      kanal komunikasi, serta harga yang tetap terjangkau meskipun produk bersifat eksklusif.</p>
+    <p>Produk handmade, estetik, dengan layanan kustom, harga terjangkau, serta pelayanan cepat dan ramah, menjadikan pengalaman belanja Anda lebih personal dan bermakna.</p>
   </section>
 
   <section class="produk-preview">
-    <h2>Our Product</h2>
-    <div class="produk-container">
-      <div class="produk-item">
-        <img src="asset/p gelang.jpg" alt="Sea Bracelete">
-        <h3>Sea Bracelete</h3>
-        <p class="price">IDR 25.000</p>
-        <div class="button-group">
-          <button class="beli-btn">Beli Sekarang</button>
-          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
-        </div>
-      </div>
-      <div class="produk-item">
-        <img src="asset/p kalung.jpg" alt="Random Bracelete">
-        <h3>Random Bracelete</h3>
-        <p class="price">IDR 25.000</p>
-        <div class="button-group">
-          <button class="beli-btn">Beli Sekarang</button>
-          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
-        </div>
-      </div>
-      <div class="produk-item">
-        <img src="asset/p kalung2.jpg" alt="Necklace Beads">
-        <h3>Necklace Beads</h3>
-        <p class="price">IDR 25.000</p>
-        <div class="button-group">
-          <button class="beli-btn">Beli Sekarang</button>
-          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
-        </div>
-      </div>
-      <div class="produk-item">
-        <img src="asset/bbb.jpg" alt="Necklace Beads">
-        <h3>Necklace Beads</h3>
-        <p class="price">IDR 25.000</p>
-        <div class="button-group">
-          <button class="beli-btn">Beli Sekarang</button>
-          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
-        </div>
-      </div>
-      <div class="produk-item">
-        <img src="asset/ggg.jpg" alt="Necklace Beads">
-        <h3>Necklace Beads</h3>
-        <p class="price">IDR 25.000</p>
-        <div class="button-group">
-          <button class="beli-btn">Beli Sekarang</button>
-          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
-        </div>
-      </div>
-      <div class="produk-item">
-        <img src="asset/nnnn.jpg" alt="Necklace Beads">
-        <h3>Necklace Beads</h3>
-        <p class="price">IDR 25.000</p>
-        <div class="button-group">
-          <button class="beli-btn">Beli Sekarang</button>
-          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
-        </div>
-      </div>
-      <div class="produk-item">
-        <img src="asset/uuuu.jpg" alt="Necklace Beads">
-        <h3>Necklace Beads</h3>
-        <p class="price">IDR 25.000</p>
-        <div class="button-group">
-          <button class="beli-btn">Beli Sekarang</button>
-          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
-        </div>
-      </div>
-      <div class="produk-item">
-        <img src="asset/produk 8.jpg" alt="Coquette Beads">
-        <h3>Coquette Beads</h3>
-        <p class="price">IDR 25.000</p>
-        <div class="button-group">
-          <button class="beli-btn">Beli Sekarang</button>
-          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
-        </div>
-      </div>
+    <div class="produk-item">
+      <img src="asset/p gelang.jpg" alt="Sea Bracelete">
+      <h3>Sea Bracelete</h3>
+      <p class="price">IDR 5.000</p>
+    </div>
+    <div class="produk-item">
+      <img src="asset/p kalung.jpg" alt="Random Bracelete">
+      <h3>Random Bracelete</h3>
+      <p class="price">IDR 6.000</p>
+    </div>
+    <div class="produk-item">
+      <img src="asset/p kalung2.jpg" alt="Necklace Beads">
+      <h3>Necklace Beads</h3>
+      <p class="price">IDR 6.000</p>
+    </div>
+    <div class="produk-item">
+      <img src="asset/produk 8.jpg" alt="Coquette Beads">
+      <h3>Coquette Beads</h3>
+      <p class="price">IDR 10.000</p>
+    </div>
+    <div class="produk-item">
+      <img src="asset/p gelang.jpg" alt="Sea Bracelete">
+      <h3>Sea Bracelete</h3>
+      <p class="price">IDR 5.000</p>
+    </div>
+    <div class="produk-item">
+      <img src="asset/p kalung.jpg" alt="Random Bracelete">
+      <h3>Random Bracelete</h3>
+      <p class="price">IDR 6.000</p>
+    </div>
+    <div class="produk-item">
+      <img src="asset/p kalung2.jpg" alt="Necklace Beads">
+      <h3>Necklace Beads</h3>
+      <p class="price">IDR 6.000</p>
+    </div>
+    <div class="produk-item">
+      <img src="asset/produk 8.jpg" alt="Coquette Beads">
+      <h3>Coquette Beads</h3>
+      <p class="price">IDR 10.000</p>
     </div>
   </section>
 
   <footer>
-    <div class="footer-logo">
-      <img src="asset/seplogo.png" alt="Logo" width="50">
-      <div>
-        <div>Sepphira Beads</div>
-        <div style="font-weight: normal; font-size: 14px;">"Sweet Little Sparkles for Everyday Moments"</div>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="asset/seplogo.png" alt="Logo">
+        <div>
+          <div style="font-weight:700;">Sepphira Beads</div>
+          <div style="font-size: 14px;">"Sweet Little Sparkles for Everyday Moments"</div>
+        </div>
       </div>
-    </div>
-    <div class="footer-nav">
-      <a href="index.html">Beranda</a>
-      <a href="tentangkami.html">Tentang Kami</a>
-      <a href="portofolio.html">Portofolio</a>
-      <a href="pelanggan.html">Pelanggan</a>
-    </div>
-    <div class="footer-contact">
-      <p>Wonogiri</p>
-      <p>Pakembinangun, Kec. Pakem, Kabupaten Sleman</p>
-      <p>Daerah Istimewa Yogyakarta</p>
-      <p>+62 856 4360 3270</p>
-      <div class="footer-social">
-        <i class="fab fa-instagram"></i>
-        <i class="fab fa-tiktok"></i>
-        <i class="fab fa-facebook"></i>
+      <div class="footer-nav">
+        <a href="index.html">Beranda</a>
+        <a href="produk.html">Produk</a>
+        <a href="portofolio.html">Portofolio</a>
+        <a href="pelanggan.html">Pelanggan</a>
+      </div>
+      <div class="footer-contact">
+        <p>Wonogiri</p>
+        <p>Pakembinangun, Kec. Pakem, Kabupaten Sleman</p>
+        <p>Daerah Istimewa Yogyakarta</p>
+        <p>+62 856 4360 3270</p>
+        <div class="footer-social">
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-tiktok"></i>
+          <i class="fab fa-facebook"></i>
+        </div>
       </div>
     </div>
   </footer>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      updateCartCount();
-
-      const cartButtons = document.querySelectorAll('.produk-item .cart-btn');
-      cartButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-          e.preventDefault();
-          const item = button.closest('.produk-item');
-          const name = item.querySelector('h3').textContent;
-          const image = item.querySelector('img').getAttribute('src');
-          const price = 25000;
-
-          let list = JSON.parse(localStorage.getItem('cartList') || '[]');
-          list.push({ name, image, price, quantity: 1 });
-          localStorage.setItem('cartList', JSON.stringify(list));
-          localStorage.setItem('cartCount', list.length);
-          updateCartCount();
-
-          // Jika tombolnya memang berniat redirect (misal tombol cart di produk)
-          if (button.dataset.redirect === "true") {
-            window.location.href = 'keranjang.html';
-          }
-        });
-      });
-    });
-
-    function updateCartCount() {
-      const count = localStorage.getItem('cartCount') || 0;
-      const badge = document.getElementById('cart-count');
-      if (badge) badge.textContent = count;
-    }
-  </script>
 </body>
+
 </html>

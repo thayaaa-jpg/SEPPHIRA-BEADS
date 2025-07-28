@@ -3,6 +3,11 @@
   box-sizing: border-box;
 }
 
+:root {
+      --primary: #800038;
+      --secondary: #f4a9c8;
+    }
+
 html, body {
   margin: 0;
   padding: 0;
@@ -19,21 +24,60 @@ body {
 }
 
 nav {
-  background-color: #f4a9c8;
-  padding: 10px;
-  text-align: right;
-}
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      z-index: 50;
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      /* <<< dari 1700px menjadi 1200px */
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 40px;
+      /* sesuai tinggi navbar */
+    }
 
-nav a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
 
-nav a:hover {
-  text-decoration: underline;
-}
+    .nav-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .nav-buttons a button {
+      padding: 0.5rem 1rem;
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .nav-buttons a button:hover {
+      background-color: #e07ba7;
+    }
+
+    .active-btn {
+      background-color: #e07ba7 !important;
+    }
+
 
 header .banner {
   width: 100%;

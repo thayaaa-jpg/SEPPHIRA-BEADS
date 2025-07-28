@@ -5,33 +5,149 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tentang Kami - Sepphira Beads</title>
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    .struktur-img {
+    :root {
+      --primary: #800038;
+      --secondary: #f4a9c8;
+      --soft-bg: #fff0f5;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      border-radius: 12px;
-      max-width: 800px;
-      display: block;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      z-index: 50;
+    }
+
+    .nav-container {
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+
+    .nav-logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .nav-buttons a button {
+      padding: 0.5rem 1rem;
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .nav-buttons a button:hover {
+      background-color: #e07ba7;
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 100px 20px 60px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2, h3 {
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    p, ul li {
+      font-size: 1rem;
+      text-align: justify;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .highlight-container-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.highlight-container-row img {
+  width: 150px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.highlight-container-row div {
+  flex: 1;
+}
+
+    .visi-misi-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .visi-box, .misi-box {
+      background: var(--soft-bg);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     }
 
     .manajemen-grid {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px;
-      justify-content: center;
       text-align: center;
-      margin-top: 20px;
     }
 
     .manajemen-item {
-      flex: 1 1 200px;
-      max-width: 220px;
-      background-color: #fff0f5;
+      background: var(--soft-bg);
       border-radius: 12px;
       padding: 15px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+
+    .manajemen-item:hover {
+      transform: translateY(-5px);
     }
 
     .manajemen-item img {
@@ -39,41 +155,79 @@
       border-radius: 12px;
       aspect-ratio: 1/1;
       object-fit: cover;
+      margin-bottom: 10px;
     }
+
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 50px;
+    }
+
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-social i {
+      margin: 0 8px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .footer-social i:hover {
+      transform: scale(1.2);
+    }
+
+    @media (max-width: 768px) {
+  .highlight-container-row {
+    flex-direction: column;
+    text-align: center;
+  }
+}
   </style>
 </head>
 
 <body>
   <nav>
-    <a href="index.html">Beranda</a>
-    <a href="tentangkami.html">Tentang Kami</a>
-    <a href="produk.html">Produk</a>
-    <a href="portofolio.html">Portofolio</a>
-    <a href="pelanggan.html">Pelanggan</a>
-  </nav>
-
-  <section class="produk-highlight">
-    <div class="highlight-container">
-      <img src="asset/tasbih.jpg" alt="Tasbih Batu Alam">
-      <div class="highlight-info">
-        <h3>Tentang Kami</h3>
-        <p>Sepphira adalah usaha kreatif di bidang fashion aksesoris yang fokus pada pembuatan dan penjualan produk
-          berbahan dasar manik-manik (beads). Menargetkan perempuan dengan gaya unik, feminin, dan personal, Sepphira
-          menghadirkan aksesoris handmade seperti gelang, cincin, strap handphone, gantungan kunci, bag charm, dan
-          holder photocard. Setiap produk dibuat dengan teliti, mengutamakan kualitas dan desain yang simple, elegan,
-          serta bisa dikustomisasi sesuai keinginan pelanggan. Mengusung konsep lucu, estetik, dan penuh warna, Sepphira
-          hadir untuk mendukung ekspresi diri melalui detail kecil yang bermakna, sekaligus menawarkan pengalaman
-          belanja yang personal dan menyenangkan.</p>
-      </div>
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <span class="gradient-text">Sepphira</span>&nbsp;<span style="color: var(--secondary);">beads</span>
+    </a>
+    <div class="nav-buttons">
+      <a href="index.html"><button>Beranda</button></a>
+      <a href="tentangkami.html"><button class="active-btn">Tentang Kami</button></a>
+      <a href="produk.html"><button>Produk</button></a>
+      <a href="portofolio.html"><button>Portofolio</button></a>
+      <a href="pelanggan.html"><button>Pelanggan</button></a>
     </div>
-  </section>
+  </div>
+</nav>
 
-  <section>
+
+ <section class="tentang-kami-highlight" data-aos="fade-up">
+  <div class="highlight-container-row">
+    <img src="asset/seplogo.png" alt="Logo Sepphira Beads">
+    <div>
+      <h3>Tentang Kami</h3>
+      <p>Sepphira adalah usaha kreatif di bidang fashion aksesoris yang fokus pada pembuatan dan penjualan produk berbahan dasar manik-manik (beads). Menargetkan perempuan dengan gaya unik, feminin, dan personal, Sepphira menghadirkan aksesoris handmade seperti gelang, cincin, strap handphone, gantungan kunci, bag charm, dan holder photocard dengan desain simple, elegan, dan dapat dikustomisasi sesuai keinginan pelanggan.</p>
+    </div>
+  </div>
+</section>
+
+  <section data-aos="fade-right">
     <div class="visi-misi-wrapper">
       <div class="visi-box">
         <h3>Visi</h3>
-        <p>Menjadi brand aksesoris handmade terdepan yang mewakili gaya personal dan penuh makna bagi setiap pelanggan.
-        </p>
+        <p>Menjadi brand aksesoris handmade terdepan yang mewakili gaya personal dan penuh makna bagi setiap pelanggan.</p>
       </div>
       <div class="misi-box">
         <h3>Misi</h3>
@@ -87,90 +241,90 @@
     </div>
   </section>
 
-  <section>
+  <section data-aos="fade-left">
     <h2>Sejarah Perusahaan</h2>
-    <p>Sepphira Beads didirikan pada tahun 2025 sebagai sebuah inisiatif kewirausahaan kreatif yang lahir dari tugas
-      akhir mata kuliah E Bussiness Design di tingkat perguruan tinggi. Berawal dari ide sederhana untuk menciptakan
-      aksesori wanita yang unik, elegan, dan bermakna, SephiraBeads tumbuh dari semangat mahasiswa-mahasiswi yang ingin
-      memadukan nilai estetika dengan pemberdayaan.
-      Dengan modal awal yang terbatas dan proses produksi yang dilakukan secara mandiri, SephiraBeads mulai memasarkan
-      produk-produknya secara online melalui media sosial dan platform e-commerce lokal. Respon positif dari pasar
-      mendorong tim pendiri untuk terus mengembangkan desain, meningkatkan kualitas bahan, dan memperluas jangkauan
-      konsumen.
-      Meskipun baru berjalan dalam tahun pertamanya, SephiraBeads telah berhasil membangun identitas merek sebagai brand
-      aksesoris lokal yang menjunjung tinggi kreativitas, kualitas, dan nilai sosial.
-      Ke depannya, SephiraBeads berkomitmen untuk terus tumbuh sebagai pelaku usaha kreatif yang berdaya saing dan
-      berdampak.
-    </p>
+    <p>Sepphira Beads didirikan pada tahun 2025 sebagai inisiatif kewirausahaan kreatif dari tugas akhir mata kuliah E-Business Design. Berawal dari ide sederhana untuk menciptakan aksesoris wanita yang elegan, Sepphira Beads berkembang dengan semangat mahasiswa dalam memadukan estetika dengan pemberdayaan, memasarkan produk melalui media sosial dan e-commerce dengan antusiasme konsumen yang mendorong pengembangan desain dan kualitas secara konsisten.</p>
   </section>
 
-  <section>
+  <section data-aos="fade-up">
     <h2>Struktur Organisasi</h2>
-    <p>Sepphira memiliki struktur organisasi yang sederhana dan efisien, sesuai dengan skala bisnisnya sebagai usaha
-      kreatif berbasis handmade. Struktur ini mencakup beberapa peran utama yang saling terhubung dan bekerja secara
-      kolaboratif untuk mendukung kelancaran produksi, pemasaran, dan pelayanan pelanggan.
-    </p>
+    <p>Struktur organisasi Sepphira yang sederhana dan efisien mendukung proses produksi, pemasaran, dan pelayanan pelanggan.</p>
     <ul>
-          <li>Founder / Desainer Utama</li>
-          <li>Staff Produksi</li>
-          <li>Admin Medsos & Cust Service</li>
-          <li>Kurir / Mitra Ekspedisi</li>
-        </ul>
+      <li>Founder / Desainer Utama</li>
+      <li>Staff Produksi</li>
+      <li>Admin Medsos & Customer Service</li>
+      <li>Kurir / Mitra Ekspedisi</li>
+    </ul>
   </section>
 
-  <section>
+  <section data-aos="zoom-in">
     <h2>Pengantar Manajemen</h2>
     <div class="manajemen-grid">
       <div class="manajemen-item">
         <img src="asset/aca.jpg" alt="CEO">
         <h4>Rasya Athaya Dezukra</h4>
-        <p><strong>Chief Executive Officer (CEO)</strong><br>Memimpin arah strategis perusahaan secara keseluruhan.</p>
+        <p><strong>CEO</strong><br>Memimpin arah strategis perusahaan secara keseluruhan.</p>
       </div>
       <div class="manajemen-item">
         <img src="asset/sepi.jpg" alt="COO">
         <h4>Tenni Sheffiana Jopita</h4>
-        <p><strong>Chief Operating Officer (COO)</strong><br>Bertanggung jawab dalam mengelola proses operasional
-          sehari-hari.</p>
+        <p><strong>COO</strong><br>Bertanggung jawab dalam mengelola operasional harian perusahaan.</p>
       </div>
       <div class="manajemen-item">
         <img src="asset/piya.jpg" alt="CMO">
         <h4>Alfiya Hamidah</h4>
-        <p><strong>Chief Marketing Officer (CMO)</strong><br>Menangani strategi pemasaran dan promosi produk.</p>
+        <p><strong>CMO</strong><br>Menangani strategi pemasaran dan promosi produk Sepphira.</p>
       </div>
       <div class="manajemen-item">
         <img src="asset/kafita.jpg" alt="CFO">
         <h4>Kafita Cintya Devi</h4>
-        <p><strong>Chief Financial Officer (CFO)</strong><br>Mengelola aspek keuangan perusahaan.</p>
+        <p><strong>CFO</strong><br>Mengelola aspek keuangan perusahaan dengan efisien.</p>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="footer-logo">
-      <img src="asset/seplogo.png" alt="Logo" width="50">
+  <footer style="background-color: #fce4ec; padding: 40px 20px; font-family: 'Poppins', sans-serif;">
+  <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 20px;">
+    
+    <!-- Logo dan Tagline -->
+    <div style="flex: 1; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+      <img src="asset/seplogo.png" alt="Logo Sepphira Beads" style="width: 50px; border-radius: 8px;">
       <div>
-        <div>Sepphira Beads</div>
-        <div style="font-weight: normal; font-size: 14px;">"Sweet Little Sparkles for Everyday Moments"</div>
+        <div style="font-weight: 700; font-size: 18px; color: #800038;">Sepphira Beads</div>
+        <div style="font-size: 14px; color: #800038;">"Sweet Little Sparkles for Everyday Moments"</div>
       </div>
     </div>
-    <div class="footer-nav">
-      <a href="index.html">Beranda</a>
-      <a href="produk.html">Produk</a>
-      <a href="portofolio.html">Portofolio</a>
-      <a href="pelanggan.html">Pelanggan</a>
+
+    <!-- Navigasi -->
+    <div style="flex: 1; min-width: 150px;">
+      <a href="index.html" style="display: block; color: #800038; text-decoration: none; margin-bottom: 8px; font-weight: 500;">Beranda</a>
+      <a href="produk.html" style="display: block; color: #800038; text-decoration: none; margin-bottom: 8px; font-weight: 500;">Produk</a>
+      <a href="portofolio.html" style="display: block; color: #800038; text-decoration: none; margin-bottom: 8px; font-weight: 500;">Portofolio</a>
+      <a href="pelanggan.html" style="display: block; color: #800038; text-decoration: none; font-weight: 500;">Pelanggan</a>
     </div>
-    <div class="footer-contact">
-      <p>Wonogiri</p>
-      <p>Pakembinangun, Kec. Pakem, Kabupaten Sleman</p>
-      <p>Daerah Istimewa Yogyakarta</p>
-      <p>+62 856 4360 3270</p>
-      <div class="footer-social">
-        <i class="fab fa-instagram"></i>
-        <i class="fab fa-tiktok"></i>
-        <i class="fab fa-facebook"></i>
+
+    <!-- Kontak dan Sosial Media -->
+    <div style="flex: 1; min-width: 200px; color: #800038;">
+      <p style="margin: 0;">Wonogiri</p>
+      <p style="margin: 0;">Pakembinangun, Kec. Pakem, Kabupaten Sleman</p>
+      <p style="margin: 0;">Daerah Istimewa Yogyakarta</p>
+      <p style="margin: 8px 0;">+62 856 4360 3270</p>
+      <div style="display: flex; gap: 10px; margin-top: 10px; font-size: 20px;">
+        <a href="#" style="color: #800038;"><i class="fab fa-instagram"></i></a>
+        <a href="#" style="color: #800038;"><i class="fab fa-tiktok"></i></a>
+        <a href="#" style="color: #800038;"><i class="fab fa-facebook"></i></a>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
+
+
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
 </body>
 
 </html>

@@ -3,94 +3,248 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pelanggan | Sepphira Beads</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #800038;
+      --secondary: #f4a9c8;
+      --soft-bg: #fff0f5;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      z-index: 50;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+
+    .nav-logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .nav-buttons a button {
+      padding: 0.5rem 1rem;
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .nav-buttons a button:hover {
+      background-color: #e07ba7;
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 100px 20px 60px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      color: var(--primary);
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      color: var(--primary);
+      margin-top: 30px;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    .sub-pelanggan {
+      padding-left: 20px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      background: #fce4ec;
+      padding: 40px 20px;
+      margin-top: 50px;
+      font-family: 'Poppins', sans-serif;
+      color: #800038;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo img {
+      width: 50px;
+      border-radius: 8px;
+    }
+
+    .footer-nav, .footer-contact {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .footer-nav a {
+      display: block;
+      text-decoration: none;
+      color: #800038;
+      margin-bottom: 8px;
+      font-weight: 500;
+      transition: text-decoration 0.3s;
+    }
+
+    .footer-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-contact p {
+      margin: 0;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .footer-social i {
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .footer-social i:hover {
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 
-<body class="theme-transition font-sans">
+<body>
   <nav>
-    <a href="index.html">Beranda</a>
-    <a href="tentangkami.html">Tentang Kami</a>
-    <a href="produk.html">Produk</a>
-    <a href="portofolio.html">Portofolio</a>
-    <a href="pelanggan.html">Pelanggan</a>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="gradient-text">Sepphira</span>&nbsp;<span style="color: var(--secondary);">beads</span>
+      </a>
+      <div class="nav-buttons">
+        <a href="index.html"><button class="active-btn">Beranda</button></a>
+        <a href="tentangkami.html"><button>Tentang Kami</button></a>
+        <a href="produk.html"><button>Produk</button></a>
+        <a href="portofolio.html"><button>Portofolio</button></a>
+        <a href="pelanggan.html"><button>Pelanggan</button></a>
+      </div>
+    </div>
   </nav>
 
   <section>
     <h2>Pelanggan Kami</h2>
     <p><strong>🎀 Perorangan & Komunitas</strong></p>
     <ul class="sub-pelanggan">
-    <li>Perempuan usia 18 hingga 30 tahun yang memiliki gaya personal, feminim, dan menyukai aksesoris handmade sebagai
-      bentuk ekspresi diri.</li>
-    <li>Komunitas K-Pop yang memesan holder photocard, strap, dan aksesoris custom bertema idol favorit.</li>
-    <li>Art & Craft Enthusiast yang menyukai detail dan desain unik dalam aksesoris.</li>
+      <li>Perempuan usia 18 hingga 30 tahun yang memiliki gaya personal, feminin, dan menyukai aksesoris handmade sebagai bentuk ekspresi diri.</li>
+      <li>Komunitas K-Pop yang memesan holder photocard, strap, dan aksesoris custom bertema idol favorit.</li>
+      <li>Art & Craft Enthusiast yang menyukai detail dan desain unik dalam aksesoris.</li>
     </ul>
-    <p><strong>🎁Penyelenggara Acara & Retail Lokal</strong></p>
+    <p><strong>🎁 Penyelenggara Acara & Retail Lokal</strong></p>
     <ul class="sub-pelanggan">
-    <li> Event Organizer (EO) yang memesan aksesoris sebagai souvenir acara, workshop, dan gathering komunitas.</li>
-    <li> Toko hadiah & butik lokal yang menjual produk Sepphira secara reseller atau dalam konsep kurasi lokal.</li>
-    <li> Toko hampers & gifting service yang mengintegrasikan produk kami ke dalam paket kado tematik (ulang tahun,
-      wisuda, dll).</li>
+      <li>Event Organizer (EO) yang memesan aksesoris sebagai souvenir acara, workshop, dan gathering komunitas.</li>
+      <li>Toko hadiah & butik lokal yang menjual produk Sepphira secara reseller atau dalam konsep kurasi lokal.</li>
+      <li>Toko hampers & gifting service yang mengintegrasikan produk kami ke dalam paket kado tematik (ulang tahun, wisuda, dll).</li>
     </ul>
-    <p><strong>🏢 Perusahaan & ILembaga</strong></p>
+    <p><strong>🏢 Perusahaan & Lembaga</strong></p>
     <ul class="sub-pelanggan">
-    <li> Perusahaan lokal dan instansi yang menggunakan produk Sepphira sebagai corporate gift atau suvenir dalam program internal (seperti employee appreciation, event spesial, dan hampers Lebaran/Natal).</li>
-    <li> Beberapa di antaranya memesan produk custom dengan logo atau tema perusahaan.</li>
+      <li>Perusahaan lokal dan instansi yang menggunakan produk Sepphira sebagai corporate gift atau suvenir dalam program internal (seperti employee appreciation, event spesial, dan hampers Lebaran/Natal).</li>
+      <li>Beberapa di antaranya memesan produk custom dengan logo atau tema perusahaan.</li>
     </ul>
-    <h3>Testimoni Pelanggan</h3>
-    <form class="testimoni-form" enctype="multipart/form-data">
-      <label for="nama">Nama <small>(required)</small></label>
-      <input type="text" id="nama" name="nama" required />
-
-      <label for="email">Email <small>(required)</small></label>
-      <input type="email" id="email" name="email" required />
-
-      <label>Berikan rating untuk website kami <small>(required)</small></label>
-      <div class="rating-group">
-        <label><input type="radio" name="rating" value="1" required /> 1 – Very Bad</label>
-        <label><input type="radio" name="rating" value="2" /> 2 – Poor</label>
-        <label><input type="radio" name="rating" value="3" /> 3 – Average</label>
-        <label><input type="radio" name="rating" value="4" /> 4 – Good</label>
-        <label><input type="radio" name="rating" value="5" /> 5 – Excellent</label>
-      </div>
-
-      <label for="pesan">Bagaimana kami bisa lebih baik?</label>
-      <textarea id="pesan" name="pesan" rows="5"></textarea>
-
-      <label for="foto">Unggah foto produk yang diterima (opsional)</label>
-      <input type="file" id="foto" name="foto" accept="image/*" />
-
-      <button type="submit">Kirim Testimoni</button>
-    </form>
-
   </section>
 
   <footer>
-    <div class="footer-logo">
-      <img src="asset/seplogo.png" alt="Logo" width="50">
-      <div>
-        <div>Sepphira Beads</div>
-        <div style="font-weight: normal; font-size: 14px;">"Sweet Little Sparkles for Everyday Moments"</div>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="asset/seplogo.png" alt="Logo">
+        <div>
+          <div style="font-weight:700;">Sepphira Beads</div>
+          <div style="font-size: 14px;">"Sweet Little Sparkles for Everyday Moments"</div>
+        </div>
       </div>
-    </div>
-    <div class="footer-nav">
-      <a href="index.html">Beranda</a>
-      <a href="tentangkami.html">Tentang Kami</a>
-      <a href="portofolio.html">Portofolio</a>
-      <a href="produk.html">Produk</a>
-    </div>
-    <div class="footer-contact">
-      <p>Wonogiri</p>
-      <p>Pakembinangun, Kec. Pakem, Kabupaten Sleman</p>
-      <p>Daerah Istimewa Yogyakarta</p>
-      <p>+62 856 4360 3270</p>
-      <div class="footer-social">
-        <i class="fab fa-instagram"></i>
-        <i class="fab fa-tiktok"></i>
-        <i class="fab fa-facebook"></i>
+      <div class="footer-nav">
+        <a href="index.html">Beranda</a>
+        <a href="tentangkami.html">Tentang Kami</a>
+        <a href="portofolio.html">Portofolio</a>
+        <a href="produk.html">Produk</a>
+      </div>
+      <div class="footer-contact">
+        <p>Wonogiri</p>
+        <p>Pakembinangun, Kec. Pakem, Kabupaten Sleman</p>
+        <p>Daerah Istimewa Yogyakarta</p>
+        <p>+62 856 4360 3270</p>
+        <div class="footer-social">
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-tiktok"></i>
+          <i class="fab fa-facebook"></i>
+        </div>
       </div>
     </div>
   </footer>
-</body>
 
+</body>
 </html>

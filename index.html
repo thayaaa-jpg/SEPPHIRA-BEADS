@@ -5,232 +5,483 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sepphira Beads</title>
-  <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    /* Custom */
     :root {
       --primary: #800038;
       --secondary: #f4a9c8;
+      --bg-light: #fff0f5;
     }
 
-    /* Custom CSS yang tidak bisa di-handle Tailwind */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #333;
+    }
+
     .gradient-text {
       background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
-    .nav-link-underline {
-      position: relative;
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      z-index: 50;
     }
 
-    .nav-link-underline::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 50%;
-      background-color: var(--primary-dark);
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
     }
 
-    .nav-link-underline:hover::after,
-    .nav-link-underline.active::after {
-      width: 60%;
+    .nav-logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--primary);
     }
 
-    /* Feature Accordion Styles - FIXED */
-    .feature-item {
+    .nav-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .nav-buttons a button {
+      padding: 0.5rem 1rem;
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      font-weight: 600;
       cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
     }
 
-    .feature-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease-in-out, padding 0.3s ease;
+    .nav-buttons a button:hover {
+      background-color: #e07ba7;
+      transform: translateY(-2px);
+    }
+
+    header img.banner {
+      width: 100%;
+      height: auto;
+      margin-top: 60px;
+      display: block;
+    }
+
+    section {
+      padding: 2rem 1rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section h2,
+    section h3 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .produk-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .produk-item {
+      background: #ffe4f0;
+      border-radius: 16px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .produk-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .produk-item img {
+      max-width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      aspect-ratio: 1/1;
+    }
+
+    .produk-item h3 {
+      color: var(--primary);
+      margin: 0.5rem 0;
+      font-weight: 600;
+    }
+
+    .produk-item .price {
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .beli-btn,
+    .cart-btn {
+      background-color: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.5rem 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .beli-btn:hover,
+    .cart-btn:hover {
+      background-color: #e07ba7;
+      transform: translateY(-2px);
+    }
+
+    .cart-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+    }
+
+    .cart-btn i {
+      font-size: 1rem;
+    }
+
+    .highlight-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .highlight-container img {
+      max-width: 300px;
+      border-radius: 12px;
+    }
+
+    .highlight-info {
+      max-width: 400px;
+    }
+
+    .produk-gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .produk-gallery-container img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .produk-gallery-container img:hover {
+      transform: scale(1.05);
+    }
+
+    .produk-follow {
+      text-align: center;
+      flex: 1 1 100%;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    footer {
+      background-color: #fce4ec;
+      padding: 40px 20px;
+      margin-top: 2rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      color: #800038;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-logo img {
+      width: 50px;
+      border-radius: 8px;
+    }
+
+    .footer-nav {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .footer-nav a {
+      display: block;
+      color: #800038;
+      text-decoration: none;
+      margin-bottom: 8px;
+      font-weight: 500;
+      transition: text-decoration 0.3s;
+    }
+
+    .footer-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-contact {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .footer-social i {
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .footer-social i:hover {
+      transform: translateY(-3px);
+    }
+
+    .floating-wrapper {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .floating-btn {
+      background: var(--secondary);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 9999px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .floating-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .social-popup-mini {
+      display: none;
+      flex-direction: column;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      margin-bottom: 10px;
+      padding: 10px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .social-popup-mini a {
+      text-decoration: none;
+      color: var(--primary);
+      font-size: 14px;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .social-popup-mini a:hover {
+      background: #ffe4f0;
+    }
+
+    @keyframes fadeIn {
+      from {
+        transform: translateY(10px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
   </style>
 </head>
 
 <body>
   <nav>
-    <div class="fixed top-0 w-full z-50 glass-nav border-b border-secondary/20 transition-all duration-300"id="mainNav">
-      <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-16">
-          <!-- Logo -->
-          <a href="index.html" class="flex items-center space-x-2" data-aos="fade-right" data-aos-duration="800">
-            <span class="text-xl font-bold gradient-text">Sepphira</span>
-            <span class="text-xl font-bold text-secondary">beads</span>
-          </a>
-          <!-- Desktop Menu -->
-          <div class="hidden lg:flex items-center space-x-8" data-aos="fade-left" data-aos-duration="800">
-            <a href="index.html" class="nav-link-underline active text-primary-dark font-medium px-3 py-2">Beranda</a>
-            <a href="tentang.html" class="nav-link-underline text-gray-700 dark:text-gray-300 hover:text-primary font-medium px-3 py-2">Tentang Kami</a>
-            <a href="kisah-sukses.html" class="nav-link-underline text-gray-700 dark:text-gray-300 hover:text-primary font-medium px-3 py-2">Kisah Sukses</a>
-            <a href="pelatihan-materi.html" class="nav-link-underline text-gray-700 dark:text-gray-300 hover:text-primary font-medium px-3 py-2">Pelatihan & Materi</a>
-            <a href="hubungi.html" class="nav-link-underline text-gray-700 dark:text-gray-100 hover:text-primary font-medium px-3 py-2">Hubungi Kami</a>
-          </div>
-        </div>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="gradient-text">Sepphira</span>&nbsp;<span style="color: var(--secondary);">beads</span>
+      </a>
+      <div class="nav-buttons">
+        <a href="index.html"><button class="active-btn">Beranda</button></a>
+        <a href="tentangkami.html"><button>Tentang Kami</button></a>
+        <a href="produk.html"><button>Produk</button></a>
+        <a href="portofolio.html"><button>Portofolio</button></a>
+        <a href="pelanggan.html"><button>Pelanggan</button></a>
       </div>
+    </div>
   </nav>
 
-  <header>
+  <header data-aos="fade-down">
     <img src="asset/bannerpink.png" alt="Banner Produk Sepphira" class="banner">
   </header>
 
-  <section class="produk-preview">
-    <h2>Our Product</h2>
+  <section class="produk-preview" data-aos="fade-up">
+    <h2>Produk</h2>
     <div class="produk-container">
-      <div class="produk-item">
+      <div class="produk-item" data-aos="fade-up">
         <img src="asset/p gelang.jpg" alt="Sea Bracelete">
         <h3>Sea Bracelete</h3>
-        <p class="price">IDR 25.000</p>
-        <div class="button-group">
-          <button class="beli-btn">Beli Sekarang</button>
-          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
-        </div>
+        <p class="price">IDR 5.000</p>
       </div>
-      <div class="produk-item">
+      <div class="produk-item" data-aos="fade-up" data-aos-delay="100">
         <img src="asset/p kalung.jpg" alt="Random Bracelete">
         <h3>Random Bracelete</h3>
-        <p class="price">IDR 25.000</p>
-        <div class="button-group">
-          <button class="beli-btn">Beli Sekarang</button>
-          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
-        </div>
+        <p class="price">IDR 6.000</p>
       </div>
-      <div class="produk-item">
+      <div class="produk-item" data-aos="fade-up" data-aos-delay="200">
         <img src="asset/p kalung2.jpg" alt="Necklace Beads">
         <h3>Necklace Beads</h3>
-        <p class="price">IDR 25.000</p>
-        <div class="button-group">
-          <button class="beli-btn">Beli Sekarang</button>
-          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
-        </div>
+        <p class="price">IDR 6.000</p>
       </div>
-      <div class="produk-item">
-        <img src="asset/kerang.jpeg" alt="Necklace Beads">
-        <h3>Necklace Beads</h3>
-        <p class="price">IDR 25.000</p>
-        <div class="button-group">
-          <button class="beli-btn">Beli Sekarang</button>
-          <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
-        </div>
+      <div class="produk-item" data-aos="fade-up" data-aos-delay="300">
+        <img src="asset/kerang.jpeg" alt="Coquette Beads">
+        <h3>Coquette Beads</h3>
+        <p class="price">IDR 10.000</p>  
       </div>
-      <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="900">
-        <a href="produk.html" class="inline-flex items-center justify-center px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transform hover:-translate-y-1 transition-all duration-300 shadow-lg pulse-animation">
-          Lihat Produk Lain
-        </a>
-      </div>
+    </div>
   </section>
 
-  <section class="produk-highlight">
-    <div class="quote">
-      <blockquote>
-        “Life is like a train of moods, like a string of beads... they paint the world their own hue.”
-        <br><span>&mdash; Ralph Waldo Emerson</span>
-      </blockquote>
-    </div>
+
+  <section class="produk-highlight" data-aos="fade-left">
+    <h2>Highlight Produk</h2>
     <div class="highlight-container">
       <img src="asset/tasbih.jpg" alt="Tasbih Batu Alam">
       <div class="highlight-info">
         <h3>Tasbih Batu Alam dengan Rumbai Eksklusif</h3>
-        <p class="price">IDR 34.000</p>
-        <p>Tasbih elegan ini dibuat dari rangkaian batu alam asli berbagai warna dan jenis, memberikan kesan alami
-          sekaligus artistik. Setiap butiran batu memiliki keunikan motif dan tekstur, menjadikan setiap tasbih
-          satu-satunya di dunia. Dipadukan dengan aksen manik-manik emas dan mutiara sintetis yang memberikan sentuhan
+        <p class="price">IDR 15.000</p>
+        <p>Tasbih elegan dari batu alam asli dengan warna dan motif unik, memberikan kesan artistik dengan sentuhan
           mewah.</p>
-        <button>Beli Sekarang</button>
-        <a href="keranjang.html" class="cart-btn" title="Lihat Keranjang">
-          <i class="fas fa-shopping-cart"></i>
-        </a>
       </div>
     </div>
   </section>
 
-  <section class="produk-gallery">
+  <section class="produk-gallery" data-aos="fade-up">
+    <h2>Gallery Produk</h2>
     <div class="produk-gallery-container">
       <div class="produk-follow">
-        <p>follow us<br><strong>@sepphirabeads</strong></p>
+        <p>Follow us<br><strong>@sepphirabeads</strong></p>
       </div>
       <img src="asset/gelang2.jpg" alt="Produk 4">
       <img src="asset/gelang3.jpg" alt="Produk 5">
       <img src="asset/gelang4.jpg" alt="Produk 6">
-      <img src="asset/glng.jpg" alt="Produk 8">
+      <img src="asset/glng.jpg" alt="Produk 7">
     </div>
   </section>
 
+  <div class="floating-wrapper">
+    <div class="social-popup-mini" id="socialPopupMini">
+      <a href="https://shopee.co.id/alfiyahamidah" target="_blank"><i class="fas fa-store"></i> Shopee</a>
+      <a href="https://instagram.com/sepphirabeads" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://tiktok.com/@sepphirabeads" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+    </div>
+    <div class="floating-btn" onclick="toggleMiniPopup()">
+      <i class="fas fa-share-alt"></i>
+    </div>
+  </div>
+
   <footer>
-    <div class="footer-logo">
-      <img src="asset/seplogo.png" alt="Logo" width="50">
-      <div>
-        <div>Sepphira Beads</div>
-        <div style="font-weight: normal; font-size: 14px;">"Sweet Little Sparkles for Everyday Moments"</div>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="asset/seplogo.png" alt="Logo">
+        <div>
+          <div style="font-weight:700;">Sepphira Beads</div>
+          <div style="font-size: 14px;">"Sweet Little Sparkles for Everyday Moments"</div>
+        </div>
       </div>
-    </div>
-    <div class="footer-nav">
-      <a href="tentangkami.html">Tentang Kami</a>
-      <a href="produk.html">Produk</a>
-      <a href="portofolio.html">Portofolio</a>
-      <a href="pelanggan.html">Pelanggan</a>
-    </div>
-    <div class="footer-contact">
-      <p>Wonogiri</p>
-      <p>Pakembinangun, Kec. Pakem, Kabupaten Sleman</p>
-      <p>Daerah Istimewa Yogyakarta</p>
-      <p>+62 856 4360 3270</p>
-      <div class="footer-social">
-        <i class="fab fa-instagram"></i>
-        <i class="fab fa-tiktok"></i>
-        <i class="fab fa-facebook"></i>
+      <div class="footer-nav">
+        <a href="index.html">Beranda</a>
+        <a href="produk.html">Produk</a>
+        <a href="portofolio.html">Portofolio</a>
+        <a href="pelanggan.html">Pelanggan</a>
+      </div>
+      <div class="footer-contact">
+        <p>Wonogiri</p>
+        <p>Pakembinangun, Kec. Pakem, Kabupaten Sleman</p>
+        <p>Daerah Istimewa Yogyakarta</p>
+        <p>+62 856 4360 3270</p>
+        <div class="footer-social">
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-tiktok"></i>
+          <i class="fab fa-facebook"></i>
+        </div>
       </div>
     </div>
   </footer>
+
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      updateCartCount();
-
-      const cartButtons = document.querySelectorAll('.produk-item .cart-btn');
-      cartButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-          e.preventDefault();
-          const item = button.closest('.produk-item');
-          const name = item.querySelector('h3').textContent;
-          const image = item.querySelector('img').getAttribute('src');
-          const price = 25000;
-
-          let list = JSON.parse(localStorage.getItem('cartList') || '[]');
-          list.push({ name, image, price, quantity: 1 });
-          localStorage.setItem('cartList', JSON.stringify(list));
-          localStorage.setItem('cartCount', list.length);
-          updateCartCount();
-
-          // Jika tombolnya memang berniat redirect (misal tombol cart di produk)
-          if (button.dataset.redirect === "true") {
-            window.location.href = 'keranjang.html';
-          }
-        });
-      });
-    });
-
-    function updateCartCount() {
-      const count = localStorage.getItem('cartCount') || 0;
-      const badge = document.getElementById('cart-count');
-      if (badge) badge.textContent = count;
+    AOS.init({ duration: 800, once: true });
+    function toggleMiniPopup() {
+      const popup = document.getElementById('socialPopupMini');
+      popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
     }
+    document.addEventListener('click', function (e) {
+      const popup = document.getElementById('socialPopupMini');
+      const button = document.querySelector('.floating-btn');
+      if (!popup.contains(e.target) && !button.contains(e.target)) {
+        popup.style.display = 'none';
+      }
+    });
   </script>
 </body>
 
